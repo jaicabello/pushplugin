@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova.pushplugin" version="0.0.1">
+    <name>Push Plugin</name>
+
+    <description>Android Cordova plugin for HMS</description>
+    <license>MIT</license>
+
+    <keywords>cordova,android,hms,push</keywords>
+    <repo>https://developer.huawei.com/consumer/en/service/hms/developer.html</repo>
+    <issue>https://developer.huawei.com/consumer/en/service/hms/developer.html</issue>
+  
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+  
+    <js-module src="www/PushPlugin.js" name="PushPlugin">
+        <clobbers target="window.plugins.PushPlugin" />
+    </js-module>
+    <platform name="android">
+    	 <!-- hook for add maven repositories and agc plugin-->
+        <hook src="scripts/android/after_plugin_install.js" type="after_plugin_install" />
+        <hook src="scripts/android/before_plugin_uninstall.js" type="before_plugin_uninstall" />
+
+ 		<framework custom="true" src="src/android/build.gradle" type="gradleReference" />
+ 		  <!-- Push Kit dependency-->
+        <framework src="com.huawei.hms:push:4.0.0.300" /> 
+        <framework src="com.huawei.agconnect:agconnect-core:1.0.0.300" /> 
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PushPlugin">
+                <param name="android-package" value="com.hms.cordova.plugin.PushPlugin"/>
+            </feature>
+        </config-file>
+
+          <config-file parent="application/" target="AndroidManifest.xml">
+          	<service android:exported="false" android:name="com.hms.cordova.plugin.PushService">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+          </config-file>
+
+        <source-file src="src/android/PushPlugin.java" target-dir="src/com/hms/cordova/plugin" />
+        <source-file src="src/android/PushService.java" target-dir="src/com/hms/cordova/plugin" />
+    </platform>
+     <!-- Script help to copy agconnect-services.json to right places-->
+    <hook src="scripts/after_prepare.js" type="after_prepare" />
+</plugin>

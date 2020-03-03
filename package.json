@@ -1,0 +1,32 @@
+{
+  "name": "cordova.pushplugin",
+  "version": "0.0.1",
+  "description": "Push Plugin",
+  "cordova": {
+    "id": "cordova.pushplugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://developer.huawei.com/consumer/en/service/hms/developer.html"
+  },
+  "keywords": [
+    "HMS",
+    "Push",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Ceyhun ERTURK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://developer.huawei.com/consumer/en/service/hms/developer.html"
+  },
+  "homepage": "https://developer.huawei.com/consumer/en/service/hms/developer.html"
+}
