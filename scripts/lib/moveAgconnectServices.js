@@ -127,17 +127,15 @@ module.exports = function(context) {
   if (!agconnectServicesJSONFile) {
     handleError("No JSON file found containing google services configuration file", defer);
   }
-
+  var destFilePath = path.join(context.opts.plugin.dir, constants.agconnectServices+".json");
+  copyFromSourceToDestPath(defer, agconnectServicesJSONFile, destFilePath);
   if (cordovaAbove7) {
     var destPath = path.join(context.opts.projectRoot, "platforms", platform, "app");
     if (checkIfFolderExists(destPath)) {
       var destFilePath = path.join(destPath, constants.agconnectServices+".json");
       copyFromSourceToDestPath(defer, agconnectServicesJSONFile, destFilePath);
     }
-  }else{
-    var destFilePath = path.join(context.opts.plugin.dir, constants.agconnectServices+".json");
-    copyFromSourceToDestPath(defer, agconnectServicesJSONFile, destFilePath);
   }
-      
+        
   return defer.promise;
 }
