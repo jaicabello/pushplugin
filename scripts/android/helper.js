@@ -116,6 +116,6 @@ module.exports = {
     // remove any lines we added
     buildGradle = buildGradle.replace(/(?:^|\r?\n)(.*)cordova.pushplugin*?(?=$|\r?\n)/g, '');
   
-    writeRootBuildGradle(contex, buildGradle);
+    writeRootBuildGradle(context, buildGradle);
   }
 };
