@@ -48,5 +48,5 @@
         <source-file src="src/android/PushService.java" target-dir="src/com/hms/cordova/plugin" />
     </platform>
      <!-- Script help to copy agconnect-services.json to right places-->
-    <hook src="scripts/after_prepare.js" type="after_prepare" />
+     <!--<hook src="scripts/after_prepare.js" type="after_prepare" />-->
 </plugin>
