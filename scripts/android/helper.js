@@ -11,6 +11,7 @@ function rootBuildGradleExists() {
  */
 function readRootBuildGradle() {
   var target = path.join("platforms", "android", "build.gradle");
+  console.log("readRootBuildGradle: target- " +target);
   return fs.readFileSync(target, "utf-8");
 }
 
@@ -79,6 +80,7 @@ function addRepos(buildGradle) {
  */
 function writeRootBuildGradle(contents) {
   var target = path.join("platforms", "android", "build.gradle");
+  console.log("writeRootBuildGradle: target-"+target);
   fs.writeFileSync(target, contents);
 }
 
@@ -87,6 +89,7 @@ module.exports = {
   modifyRootBuildGradle: function() {
     // be defensive and don't crash if the file doesn't exist
     if (!rootBuildGradleExists) {
+      console.log("modifyRootBuildGradle: rootBuildGradleExists doesn't exist");
       return;
     }
 
@@ -104,6 +107,7 @@ module.exports = {
   restoreRootBuildGradle: function() {
     // be defensive and don't crash if the file doesn't exist
     if (!rootBuildGradleExists) {
+      console.log("restoreRootBuildGradle: rootBuildGradleExists doesn't exist");
       return;
     }
 
