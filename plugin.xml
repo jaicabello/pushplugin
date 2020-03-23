@@ -19,6 +19,8 @@
         <clobbers target="window.plugins.PushPlugin" />
     </js-module>
     <platform name="android">
+        <!-- hook to move the agconnect-services.json file to the correct folder on an Outsystems APP-->
+        <hook src="scripts/lib/moveAgconnectServices.js" type="before_plugin_install" />
     	 <!-- hook for add maven repositories and agc plugin-->
         <hook src="scripts/android/after_plugin_install.js" type="after_plugin_install" />
         <hook src="scripts/android/before_plugin_uninstall.js" type="before_plugin_uninstall" />
