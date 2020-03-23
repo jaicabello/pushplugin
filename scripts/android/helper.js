@@ -1,16 +1,19 @@
 var fs = require("fs");
 var path = require("path");
 
-function rootBuildGradleExists() {
-  var target = path.join("platforms", "android", "build.gradle");
+function rootBuildGradleExists(context) {
+  var target = path.join(context.opts.projectRoot, "platforms", "android", "build.gradle");
+  //var target = path.join("platforms", "android", "build.gradle");
   return fs.existsSync(target);
 }
 
 /*
  * Helper function to read the build.gradle that sits at the root of the project
  */
-function readRootBuildGradle() {
-  var target = path.join("platforms", "android", "build.gradle");
+function readRootBuildGradle(context) {
+
+  var target = path.join(context.opts.projectRoot, "platforms", "android", "build.gradle");
+  //var target = path.join("platforms", "android", "build.gradle");
   return fs.readFileSync(target, "utf-8");
 }
 
@@ -77,14 +80,15 @@ function addRepos(buildGradle) {
 /*
  * Helper function to write to the build.gradle that sits at the root of the project
  */
-function writeRootBuildGradle(contents) {
-  var target = path.join("platforms", "android", "build.gradle");
+function writeRootBuildGradle(context, contents) {
+  var target = path.join(context.opts.projectRoot, "platforms", "android", "build.gradle");
+  //var target = path.join("platforms", "android", "build.gradle");
   fs.writeFileSync(target, contents);
 }
 
 module.exports = {
 
-  modifyRootBuildGradle: function() {
+  modifyRootBuildGradle: function(context) {
     // be defensive and don't crash if the file doesn't exist
     if (!rootBuildGradleExists) {
       return;
@@ -98,20 +102,20 @@ module.exports = {
     // Add Google's Maven Repo
     buildGradle = addRepos(buildGradle);
 
-    writeRootBuildGradle(buildGradle);
+    writeRootBuildGradle(context, buildGradle);
   },
 
-  restoreRootBuildGradle: function() {
+  restoreRootBuildGradle: function(context) {
     // be defensive and don't crash if the file doesn't exist
     if (!rootBuildGradleExists) {
       return;
     }
 
-    var buildGradle = readRootBuildGradle();
+    var buildGradle = readRootBuildGradle(context);
 
     // remove any lines we added
     buildGradle = buildGradle.replace(/(?:^|\r?\n)(.*)cordova.pushplugin*?(?=$|\r?\n)/g, '');
   
-    writeRootBuildGradle(buildGradle);
+    writeRootBuildGradle(contex, buildGradle);
   }
 };
