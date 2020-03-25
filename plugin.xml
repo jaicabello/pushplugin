@@ -36,7 +36,7 @@
             </feature>
         </config-file>
 
-          <config-file parent="application/" target="AndroidManifest.xml">
+          <config-file parent="/manifest/application" target="AndroidManifest.xml">
           	<service android:exported="false" android:name="com.hms.cordova.plugin.PushService">
             <intent-filter>
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
