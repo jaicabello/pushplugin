@@ -24,7 +24,7 @@ function addDependencies(buildGradle) {
   var whitespace = match[1];
   
   // modify the line to add the necessary dependencies
-  var agcDependency = whitespace + 'classpath \'com.huawei.agconnect:agcp:1.2.0.300\'' 
+  var agcDependency = whitespace + 'classpath \'com.huawei.agconnect:agcp:1.3.1.300\'' 
 
   var modifiedLine = match[0] + '\n' + agcDependency;
   
